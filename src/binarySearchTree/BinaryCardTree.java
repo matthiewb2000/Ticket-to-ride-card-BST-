@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class BinaryCardTree {
 
 	Node root;
-	int loops=0;
+	static int loops=0;
 	ArrayList <String> cards = new ArrayList<String>();
 
 	public void addNode(String color,int num){
@@ -56,7 +56,7 @@ public class BinaryCardTree {
         if(n!=null)
         {        
         display(n.leftChild);
-        System.out.println(n.num);
+        System.out.println(n.color);
         display(n.rightChild);
         }
 
@@ -76,13 +76,13 @@ public class BinaryCardTree {
 
 
     }
-	public int search(Node n, String val)
+	public static int search(Node n, String val)
     {
 		if(n!=null)
 		{
         //boolean isThere = false;
-		System.out.println("");
-		System.out.print(n.num);
+		//System.out.println("");
+		//System.out.print(n.num);
         if(n.color.compareTo(val)==0)
         {
             //System.out.println("loops: "+loops+" for value "+val);

@@ -76,6 +76,22 @@ public class bstMain {
 			bct.addNode(hand.get(i), i);
 			System.out.println(hand.get(i));
 		}*/
+		int orders = Integer.parseInt(colors.get(11));
+		ArrayList<String> cardType = new ArrayList<String>();
+		ArrayList<String> numRemove = new ArrayList<String>();
+		for(int i=12;i<orders+12;i++)
+		{
+			String[] order = colors.get(i).split(" ");
+			numRemove.add(order[0]);
+			cardType.add(order[1]);
+		}
+		
+		for(int i=12;i<orders+12;i++)
+		{
+			System.out.println(BinaryCardTree.search( bct.root,colors.get(i)));//You were here on the end of class friday
+		}
+		
+		System.out.println(BinaryCardTree.search( bct.root,"blue"));//This line proves the colors match their given numbers in the search tree. The code is ready for execution
 		
 		
 		
