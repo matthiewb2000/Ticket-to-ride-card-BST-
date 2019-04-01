@@ -78,24 +78,30 @@ public class bstMain {
 		}*/
 		int orders = Integer.parseInt(colors.get(11));
 		ArrayList<String> cardType = new ArrayList<String>();
-		ArrayList<String> numRemove = new ArrayList<String>();
+		ArrayList<Integer> numRemove = new ArrayList<Integer>();
 		for(int i=12;i<orders+12;i++)
 		{
 			String[] order = colors.get(i).split(" ");
-			numRemove.add(order[0]);
+			String numRem = order[0];
+			numRemove.add(Integer.parseInt(numRem));
 			cardType.add(order[1]);
 		}
 		
 		for(int i=12;i<orders+12;i++)
 		{
-			System.out.println(BinaryCardTree.search( bct.root,colors.get(i)));//You were here on the end of class friday
+			if (numRemove.get(i-12)<=BinaryCardTree.search( bct.root,cardType.get(i-12)))
+			{
+				int newNum = BinaryCardTree.search( bct.root,cardType.get(i-12))-numRemove.get(i-12);
+				BinaryCardTree.setNum(newNum);
+			}
+			
 		}
 		
-		System.out.println(BinaryCardTree.search( bct.root,"blue"));//This line proves the colors match their given numbers in the search tree. The code is ready for execution
+		//System.out.println(BinaryCardTree.search( bct.root,"red"));//This line proves the colors match their given numbers in the search tree. The code is ready for execution
 		
 		
 		
-		bct.display(bct.root);
+		//bct.display(bct.root);
 		System.out.println();
 		//colorList();
 	}

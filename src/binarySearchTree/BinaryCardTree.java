@@ -119,7 +119,17 @@ public class BinaryCardTree {
 			return 0;
 		}
     }
-	static class Node {
+	public void setNum(int newNum) {
+		
+		Node.setNum(newNum);
+		
+	}
+
+
+	    
+		
+	}
+	class Node {
 
 		
 		String color;
@@ -136,7 +146,11 @@ public class BinaryCardTree {
 		{
 			return "card: " + this.color;
 		}
-	
+
+	 
+	    public void setNum(int num) {
+	        this.num = num;
+	    }
 	}
-}
+
 	
