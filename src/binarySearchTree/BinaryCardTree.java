@@ -100,13 +100,13 @@ public class BinaryCardTree {
             }
             return search(n.leftChild,val);
         }
-        if(n.color.compareTo(val)>0)
+        if(n.color.compareTo(val)<0)
         {
             
             loops=loops+1;
             if (n.rightChild==null)
             {
-                System.out.println("loops: "+loops+" for value "+val);
+                //System.out.println("loops: "+loops+" for value "+val);
                 loops=0;
                 return n.num;
             }
@@ -119,22 +119,58 @@ public class BinaryCardTree {
 			return 0;
 		}
     }
-	public void setNum(int newNum) {
-		
-		Node.setNum(newNum);
-		
+	public Node setNum(Node n,String color, int newNum) {
+		//Node ode = new Node(color, newNum);
+		//ode.setNum(color, newNum);// you were here monday
+		if(n!=null)
+		{
+        //boolean isThere = false;
+		//System.out.println("");
+		//System.out.print(n.num);
+        if(n.color.compareTo(color)==0)
+        {
+            //System.out.println("loops: "+loops+" for value "+val);
+
+             n.setNum(color, newNum);
+        }
+        if(n.color.compareTo(color)>0)
+        {
+            //loops=loops+1;
+            if (n.leftChild==null)
+            {
+                //System.out.println("loops: "+loops+" for value "+val);
+                //loops=0;
+                return n;
+            }
+            return setNum(n.leftChild,color,newNum);
+        }
+        if(n.color.compareTo(color)<0)
+        {
+            
+            //loops=loops+1;
+            if (n.rightChild==null)
+            {
+                //System.out.println("loops: "+loops+" for value "+val);
+                //loops=0;
+                return n;
+            }
+            return setNum(n.rightChild,color,newNum);
+        }
+        return n;
+		}
+		else
+		{
+			return n;
+		}
 	}
-
-
-	    
-		
+	
 	}
 	class Node {
 
 		
 		String color;
 		
-		static int num=0;
+		int num=0;
 		Node leftChild;
 		Node rightChild;
 		Node(String color,int num)
@@ -147,10 +183,14 @@ public class BinaryCardTree {
 			return "card: " + this.color;
 		}
 
-	 
-	    public void setNum(int num) {
-	        this.num = num;
-	    }
+	
+		public int getNum() {
+			return num;
+		}
+		public void setNum(String color,int num) {
+			this.color = color;
+			this.num = num;
+		}
 	}
 
 	

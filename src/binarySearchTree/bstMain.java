@@ -53,9 +53,11 @@ public class bstMain {
 		hand.add(colors.get(i));
 		System.out.println(colors.get(i));
 		}
+		System.out.println("");
 		for(int i=0;i<listOColors.size();i++)
 		{
 			int numOColor=0;
+			int wild=0;
 			for(int j=0;j<hand.size();j++)
 			{
 				if(listOColors.get(i).compareTo(hand.get(j))==0)
@@ -64,19 +66,25 @@ public class bstMain {
 				}
 				if(hand.get(j).compareTo("wild")==0)
 				{
-					numOColor=numOColor+1;
+					wild=wild+1;
 				}
 			}
-			bct.addNode(listOColors.get(i), numOColor);
-			System.out.println(listOColors.get(i)+" "+numOColor);
+			bct.addNode(listOColors.get(i), numOColor+wild);
+			System.out.println(listOColors.get(i)+" "+numOColor+wild);
 		}
-		
+		System.out.println(" ");
+		for(int i=0;i<listOColors.size();i++)
+		{
+		 System.out.println(listOColors.get(i)+" "+ BinaryCardTree.search( bct.root,listOColors.get(i)));
+		}
+		System.out.println(" ");
 		/*for(int i=0;i<hand.size();i++)
 		{
 			bct.addNode(hand.get(i), i);
 			System.out.println(hand.get(i));
 		}*/
 		int orders = Integer.parseInt(colors.get(11));
+		//System.out.println(orders);
 		ArrayList<String> cardType = new ArrayList<String>();
 		ArrayList<Integer> numRemove = new ArrayList<Integer>();
 		for(int i=12;i<orders+12;i++)
@@ -86,20 +94,37 @@ public class bstMain {
 			numRemove.add(Integer.parseInt(numRem));
 			cardType.add(order[1]);
 		}
-		
+		//System.out.println(BinaryCardTree.search( bct.root,"red"));//This line proves the colors match their given numbers in the search tree. The code is ready for execution
 		for(int i=12;i<orders+12;i++)
 		{
 			if (numRemove.get(i-12)<=BinaryCardTree.search( bct.root,cardType.get(i-12)))
 			{
 				int newNum = BinaryCardTree.search( bct.root,cardType.get(i-12))-numRemove.get(i-12);
-				BinaryCardTree.setNum(newNum);
+				System.out.print(cardType.get(i-12)+": ");
+				System.out.println(newNum);
+				bct.setNum(bct.root,cardType.get(i-12),newNum);
 			}
 			
 		}
 		
-		//System.out.println(BinaryCardTree.search( bct.root,"red"));//This line proves the colors match their given numbers in the search tree. The code is ready for execution
+		//add cards
+		ArrayList<String> cardTypes = new ArrayList<String>();
+		for(int i=15;i<22;i++)
+		{
+			cardTypes.add(colors.get(i));
+		}
+		for(int i=0;i<2;i++)
+		{
+		int drawcard = (int)(Math.random() * cardTypes.size());
+		int newNum= BinaryCardTree.search( bct.root,cardTypes.get(drawcard))+1;
+		bct.setNum(bct.root,cardTypes.get(drawcard),newNum); //remember to add this back to the code
+		}
 		
-		
+		for(int i=0;i<listOColors.size();i++)
+		{
+		 System.out.println(listOColors.get(i)+" "+ BinaryCardTree.search( bct.root,listOColors.get(i)));
+		}
+		System.out.println(" ");
 		
 		//bct.display(bct.root);
 		System.out.println();
