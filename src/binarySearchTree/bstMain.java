@@ -71,7 +71,7 @@ public class bstMain {
 			}
 			int numcol=numOColor+wild;
 			bct.addNode(listOColors.get(i), numcol);
-			if(i==0)
+			if(i==listOColors.size()-1)
 			{
 			bct.addNode("wild", wild);
 			}
