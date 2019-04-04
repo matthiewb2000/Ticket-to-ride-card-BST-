@@ -117,6 +117,7 @@ public class bstMain {
 						{
 							bct.setNum(bct.root,listOColors.get(j),BinaryCardTree.search( bct.root,listOColors.get(j))-(BinaryCardTree.search( bct.root,"wild")-newNum));
 						}
+						bct.setNum(bct.root,"wild",BinaryCardTree.search(bct.root,"wild")-(BinaryCardTree.search( bct.root,"wild")-newNum));
 					}
 			}
 		}
