@@ -69,13 +69,18 @@ public class bstMain {
 					wild=wild+1;
 				}
 			}
-			bct.addNode(listOColors.get(i), numOColor+wild);
-			System.out.println(listOColors.get(i)+" "+numOColor+wild);
+			int numcol=numOColor+wild;
+			bct.addNode(listOColors.get(i), numcol);
+			if(i==0)
+			{
+			bct.addNode("wild", wild);
+			}
+			System.out.println(listOColors.get(i)+" "+numcol);
 		}
 		System.out.println(" ");
 		for(int i=0;i<listOColors.size();i++)
 		{
-		 System.out.println(listOColors.get(i)+" "+ BinaryCardTree.search( bct.root,listOColors.get(i)));
+		 System.out.println(listOColors.get(i)+" "+ BinaryCardTree.search(bct.root,listOColors.get(i)));
 		}
 		System.out.println(" ");
 		/*for(int i=0;i<hand.size();i++)
@@ -100,12 +105,23 @@ public class bstMain {
 			if (numRemove.get(i-12)<=BinaryCardTree.search( bct.root,cardType.get(i-12)))
 			{
 				int newNum = BinaryCardTree.search( bct.root,cardType.get(i-12))-numRemove.get(i-12);
-				System.out.print(cardType.get(i-12)+": ");
-				System.out.println(newNum);
-				bct.setNum(bct.root,cardType.get(i-12),newNum);
+					System.out.print(cardType.get(i-12)+": ");
+					System.out.println(newNum);
+					if(BinaryCardTree.search( bct.root,"wild")<=newNum)
+					{
+						bct.setNum(bct.root,cardType.get(i-12),newNum);
+					}
+					else
+					{//System.out.println(BinaryCardTree.search( bct.root,"wild")-newNum);
+						for(int j=0;j<listOColors.size();j++)
+						{
+							bct.setNum(bct.root,listOColors.get(j),BinaryCardTree.search( bct.root,listOColors.get(j))-(BinaryCardTree.search( bct.root,"wild")-newNum));
+						}
+					}
 			}
-			
 		}
+			
+		
 		
 		//add cards
 		ArrayList<String> cardTypes = new ArrayList<String>();
@@ -117,7 +133,17 @@ public class bstMain {
 		{
 		int drawcard = (int)(Math.random() * cardTypes.size());
 		int newNum= BinaryCardTree.search( bct.root,cardTypes.get(drawcard))+1;
+		if (cardTypes.get(i).compareTo("wild")!=0)
+		{
 		bct.setNum(bct.root,cardTypes.get(drawcard),newNum); //remember to add this back to the code
+		}
+		else
+		{
+			for(int j=0;j<listOColors.size();j++)
+			{
+				bct.setNum(bct.root,listOColors.get(j),BinaryCardTree.search( bct.root,listOColors.get(j)));
+			}
+		}
 		}
 		
 		for(int i=0;i<listOColors.size();i++)
@@ -128,6 +154,7 @@ public class bstMain {
 		
 		//bct.display(bct.root);
 		System.out.println();
+		//System.out.println(bct.cardType(bct.root));
 		//colorList();
 	}
 	/*

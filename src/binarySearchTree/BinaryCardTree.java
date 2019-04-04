@@ -64,9 +64,10 @@ public class BinaryCardTree {
 	public String cardType(Node n)
     {
         if(n!=null)//order of cards is in postorder instead of the default
-        {        
-        cardType(n.leftChild);
+        {  
         cardType(n.rightChild);
+        cardType(n.leftChild);
+
         return n.color;
         }
         else
@@ -87,6 +88,7 @@ public class BinaryCardTree {
         {
             //System.out.println("loops: "+loops+" for value "+val);
             loops=0;
+            //System.out.print(val+": "+n.num);
             return n.num;
         }
         if(n.color.compareTo(val)>0)
