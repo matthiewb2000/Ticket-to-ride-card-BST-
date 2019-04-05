@@ -105,8 +105,8 @@ public class bstMain {
 			if (numRemove.get(i-12)<=BinaryCardTree.search( bct.root,cardType.get(i-12)))
 			{
 				int newNum = BinaryCardTree.search( bct.root,cardType.get(i-12))-numRemove.get(i-12);
-					System.out.print(cardType.get(i-12)+": ");
-					System.out.println(newNum);
+					//System.out.print(cardType.get(i-12)+": ");
+					//System.out.println(newNum);
 					if(BinaryCardTree.search( bct.root,"wild")<=newNum)
 					{
 						bct.setNum(bct.root,cardType.get(i-12),newNum);
@@ -130,7 +130,7 @@ public class bstMain {
 		{
 			cardTypes.add(colors.get(i));
 		}
-		for(int i=0;i<2;i++)
+		for(int i=0;i<3;i++)
 		{
 		int drawcard = (int)(Math.random() * cardTypes.size());
 		int newNum= BinaryCardTree.search( bct.root,cardTypes.get(drawcard))+1;
